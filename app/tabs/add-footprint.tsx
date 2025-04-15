@@ -138,17 +138,15 @@ export default function AddFootprint() {
     try {
       const existingData = await AsyncStorage.getItem('@footprints');
       let footprints = [];
-
-      // 确保从 AsyncStorage 获取的数据是有效的 JSON 数组
       if (existingData) {
         try {
           footprints = JSON.parse(existingData);
           if (!Array.isArray(footprints)) {
-            footprints = []; // 如果不是数组，重置为空数组
+            footprints = []; 
           }
         } catch (error) {
           console.error('Parsing AsyncStorage data fails. Procedure:', error);
-          footprints = []; // 解析失败时重置为空数组
+          footprints = []; 
         }
       }
 

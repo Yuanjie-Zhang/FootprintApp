@@ -35,9 +35,8 @@ export default function MyFootprints() {
         const storedData = await AsyncStorage.getItem('@footprints');
         if (storedData) {
           const parsed = JSON.parse(storedData);
-          // 支持单条对象或数组
           const parsedData: Footprint[] = Array.isArray(parsed) ? parsed : [parsed];
-          setFootprints(parsedData.reverse()); // 最近的显示在前
+          setFootprints(parsedData.reverse()); 
         }
       } catch (error) {
         console.error('Footprint loading failure:', error);
@@ -59,10 +58,9 @@ export default function MyFootprints() {
         style: 'destructive',
         onPress: async () => {
           try {
-            // 使用过滤函数，确保删除指定时间戳的足迹
             const updated = footprints.filter((item) => item.timestamp !== timestamp);
-            setFootprints(updated); // 更新状态
-            await AsyncStorage.setItem('@footprints', JSON.stringify(updated)); // 存储更新后的数据
+            setFootprints(updated); 
+            await AsyncStorage.setItem('@footprints', JSON.stringify(updated)); 
           } catch (err) {
             console.error('fail to delete:', err);
             Alert.alert('error', 'fail to delete');
